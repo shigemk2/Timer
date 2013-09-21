@@ -25,26 +25,45 @@ class TimerController < UIViewController
     @state1.frame = [[margin, 200], [view.frame.size.width - margin * 2, 40]]
     view.addSubview(@state1)
 
-    @action = UIButton.buttonWithType(UIButtonTypeRoundedRect)
-    @action.setTitle('Start', forState:UIControlStateNormal)
-    @action.setTitle('Stop', forState:UIControlStateSelected)
-    @action.addTarget(self, action:'actionTapped', forControlEvents:UIControlEventTouchUpInside)
-    @action.frame = [[margin, 260], [view.frame.size.width - margin * 2, 40]]
-    view.addSubview(@action)
+    @action1 = UIButton.buttonWithType(UIButtonTypeRoundedRect)
+    @action1.setTitle('Start', forState:UIControlStateNormal)
+    @action1.setTitle('Stop', forState:UIControlStateSelected)
+    @action1.addTarget(self, action:'actionTapped1', forControlEvents:UIControlEventTouchUpInside)
+    @action1.frame = [[margin, 260], [view.frame.size.width - margin * 2, 40]]
+    view.addSubview(@action1)
+
+    @action2 = UIButton.buttonWithType(UIButtonTypeRoundedRect)
+    @action2.setTitle('Reset', forState:UIControlStateNormal)
+    @action2.addTarget(self, action:'actionTapped2', forControlEvents:UIControlEventTouchUpInside)
+    @action2.frame = [[margin, 340], [view.frame.size.width - margin * 2, 40]]
+    view.addSubview(@action2)
   end
 
-  def actionTapped
+  def actionTapped1
     if @timer
       @timer.invalidate
       @timer = nil
     else
-      # @duration = 0
       @timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector:'timerFired', userInfo:nil, repeats:true)
     end
-    @action.selected = !@action.selected?
+    @action1.selected = !@action1.selected?
   end
 
   def timerFired
     @state1.text = "%.1f" % (@@duration += 0.1)
+  end
+
+  def actionTapped2
+    if @timer
+      @timer.invalidate
+      @timer = nil
+    else
+      timerReset
+    end
+  end
+
+  def timerReset
+    @@duration = 0
+    @state1.text = "%.1f" % (@@duration)
   end
 end

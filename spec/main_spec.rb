@@ -37,6 +37,7 @@ describe "The Timer view controller" do
   it "resets the timer on each run" do
     label = view('Tap to start')
 
+    tap 'Reset'
     tap 'Start'
     proper_wait 1
     tap 'Stop'
@@ -44,7 +45,7 @@ describe "The Timer view controller" do
 
     tap 'Reset'
 
-    label.text.to_f.should.not == 0
+    label.text.to_f.should == 0
   end
 
 end
