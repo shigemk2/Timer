@@ -31,7 +31,7 @@ describe "The Timer view controller" do
     tap 'Start'
     tap 'Stop'
 
-    label.text.to_f.should.not == 0
+    label.text.to_f.should.not == 'Tap to start'
   end
 
   it "resets the timer on each run" do
@@ -45,7 +45,7 @@ describe "The Timer view controller" do
 
     tap 'Reset'
 
-    label.text.to_f.should == 0
+    label.text.should == 'Tap to start'
   end
 
 end
