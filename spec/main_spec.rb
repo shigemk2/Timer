@@ -18,7 +18,20 @@ describe "The Timer view controller" do
     proper_wait 1
     tap 'Stop'
     label.text.to_f.should > 1
-    label.text.to_f.should < 2
+  end
+
+  it "restarts the timer on each run" do
+    label = view('Tap to start')
+
+    tap 'Start'
+    proper_wait 1
+    tap 'Stop'
+    label.text.to_f.should > 1
+
+    tap 'Start'
+    tap 'Stop'
+
+    label.text.to_f.should.not == 0
   end
 
   it "resets the timer on each run" do
@@ -27,10 +40,11 @@ describe "The Timer view controller" do
     tap 'Start'
     proper_wait 1
     tap 'Stop'
+    label.text.to_f.should > 1
 
-    tap 'Start'
-    tap 'Stop'
+    tap 'Reset'
 
-    label.text.to_f.should < 1
+    label.text.to_f.should.not == 0
   end
+
 end

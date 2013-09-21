@@ -1,5 +1,6 @@
 class TimerController < UIViewController
   attr_reader :timer
+  @@duration = 0
 
   def viewDidLoad
     hoge_image = UIImage.imageNamed (".jpg")
@@ -37,13 +38,13 @@ class TimerController < UIViewController
       @timer.invalidate
       @timer = nil
     else
-      @duration = 0
+      # @duration = 0
       @timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector:'timerFired', userInfo:nil, repeats:true)
     end
     @action.selected = !@action.selected?
   end
 
   def timerFired
-    @state1.text = "%.1f" % (@duration += 0.1)
+    @state1.text = "%.1f" % (@@duration += 0.1)
   end
 end
