@@ -8,14 +8,21 @@ class TimerController < UIViewController
     view.addSubview(@image_view)
     margin = 20
 
-    @state = UILabel.new
-    @state.font = UIFont.systemFontOfSize(30)
-    @state.text = 'Tap to start'
-    @state.textAlignment = UITextAlignmentCenter
-    @state.textColor = UIColor.whiteColor
-    @state.backgroundColor = UIColor.clearColor
-    @state.frame = [[margin, 200], [view.frame.size.width - margin * 2, 40]]
-    view.addSubview(@state)
+    @white_view  = UIView.new
+    @white_view.frame = [[view.frame.size.width / 2 - margin * 4, 200], [170, 40]]
+    @white_view.backgroundColor = UIColor.whiteColor
+    view.addSubview(@white_view)
+
+    @state1 = UILabel.new
+    @state1.font = UIFont.systemFontOfSize(30)
+    @state1.text = 'Tap to start'
+    @state1.textAlignment = UITextAlignmentCenter
+    @state1.textColor = UIColor.magentaColor
+    @state1.shadowColor = UIColor.blackColor
+    @state1.shadowOffset = CGSizeMake(1, 1);
+    @state1.backgroundColor = UIColor.clearColor
+    @state1.frame = [[margin, 200], [view.frame.size.width - margin * 2, 40]]
+    view.addSubview(@state1)
 
     @action = UIButton.buttonWithType(UIButtonTypeRoundedRect)
     @action.setTitle('Start', forState:UIControlStateNormal)
@@ -37,6 +44,6 @@ class TimerController < UIViewController
   end
 
   def timerFired
-    @state.text = "%.1f" % (@duration += 0.1)
+    @state1.text = "%.1f" % (@duration += 0.1)
   end
 end
