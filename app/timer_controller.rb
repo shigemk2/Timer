@@ -2,6 +2,10 @@ class TimerController < UIViewController
   attr_reader :timer
 
   def viewDidLoad
+    hoge_image = UIImage.imageNamed (".jpg")
+    @image_view = UIImageView.alloc.initWithImage(hoge_image)
+    @image_view.frame = CGRectMake(0, 0, 320, 480)
+    view.addSubview(@image_view)
     margin = 20
 
     @state = UILabel.new
